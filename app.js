@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const cookieParser = require("cookie-parser");
-const port = 3000
+const port = process.env.PORT || 5000
 const ehime = require("./38EHIME.json");
 
 app.use(express.json());
@@ -19,6 +19,6 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`Heroku simple WebAPI app listening at http://localhost:${port}`)
 })
 
