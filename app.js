@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
   if (address) {
     res.send(`kbc({ result: ${JSON.stringify(address)}, message: null })`);
   } else {
-    res.send("kbc({ result: false, message: '存在しません' })");
+    res.send("kbc({ result: null, message: '存在しません' })");
   }
 })
 
