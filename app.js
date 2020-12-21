@@ -7,14 +7,16 @@ const ehime = require("./38EHIME.json");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(express.static("public"));
 
 app.get('/', (req, res) => {
   const code = req.query.code;
+  const callback = req.query.callback || "kbc";
   const address = ehime[code];
   if (address) {
-    res.send(`kbc({ result: ${JSON.stringify(address)}, message: null })`);
+    res.send(`${callback}({ result: ${JSON.stringify(address)}, message: null })`);
   } else {
-    res.send("kbc({ result: null, message: '存在しません' })");
+    res.status(404).send(`${callback}({ result: null, message: '存在しません' })`);
   }
 })
 
